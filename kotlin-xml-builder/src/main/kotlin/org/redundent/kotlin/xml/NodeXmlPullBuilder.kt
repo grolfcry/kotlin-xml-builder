@@ -57,12 +57,12 @@ class NodeXmlPullBuilder {
             val qname = if (prefix != null) "$prefix:$name" else name
             if (this.root==null) {
                 this.root = xml(qname) {
-                    xmlns = ns
+                    namespace(prefix,ns)
                 }
                 node=this.root
             }
             val parent = Node(qname)
-          //  parent.xmlns=ns
+            parent.namespace(prefix,ns)
 
 
             //declare namespaces - quite painful and easy to fail process in DOM2

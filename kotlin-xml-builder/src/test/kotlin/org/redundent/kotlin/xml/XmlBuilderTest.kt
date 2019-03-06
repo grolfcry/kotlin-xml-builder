@@ -12,6 +12,8 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import org.HdrHistogram.Histogram
 import org.w3c.dom.Document
+import org.xmlpull.v1.XmlPullParser
+import org.xmlpull.v1.XmlPullParserFactory
 import java.io.InputStreamReader
 import java.io.StringWriter
 import javax.xml.transform.OutputKeys
@@ -373,19 +375,29 @@ class XmlBuilderTest : XmlBuilderTestBase() {
     fun parseBigData() {
         val resName = "/test-results/${javaClass.simpleName}/${testName.methodName}.xml"
         val doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(javaClass.getResourceAsStream(resName))
-        val parse = NodeXmlPullBuilder().parse(InputStreamReader(javaClass.getResourceAsStream(resName)))
+        val nodeXmlPullBuilder = NodeXmlPullBuilder()
+        val parse = nodeXmlPullBuilder.parse(InputStreamReader(javaClass.getResourceAsStream(resName)))
         println(parse.toString(true))
         val node = parse(doc)
+        val xml = javaClass.getResource(resName).readText()
         val histogram = Histogram(3600000000000L, 1)
         //histogram.set
         val start = System.nanoTime()
         val count =10
         val tf = TransformerFactory.newInstance()
+        val pp = XmlPullParserFactory.newInstance().newPullParser()
+        pp.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, true)
+
+
         for( i in 1..count){
             val start = System.nanoTime()
             for( i in 1..10) {
+                pp.setInput(InputStreamReader(xml.byteInputStream()))
+                pp.next()
+                val parse = nodeXmlPullBuilder.parseSubTree(pp)
+                pp.setInput(null)
                 //node.toString(false)
-                transform(tf, doc)
+                //transform(tf, doc)
 
             }
             val end = (System.nanoTime()-start)/10
