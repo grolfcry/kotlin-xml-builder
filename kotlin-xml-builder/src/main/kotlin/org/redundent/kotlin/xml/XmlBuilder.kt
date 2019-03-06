@@ -506,7 +506,7 @@ fun parse(`is`: InputSource): Node = parse(DocumentBuilderFactory.newInstance().
 fun parse(`is`: InputStream): Node = parse(DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(`is`))
 fun parse(`is`: InputStream, systemId: String): Node = parse(DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(`is`, systemId))
 
-private fun parse(document: Document): Node {
+fun parse(document: Document): Node {
 	val root = document.documentElement
 
 	val result = xml(root.tagName)

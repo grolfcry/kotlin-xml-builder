@@ -22,7 +22,7 @@ dependencies {
 	compileOnly(kotlin("stdlib", kotlinVersion))
 	compile(kotlin("reflect", kotlinVersion))
 	compile("org.apache.commons:commons-lang3:3.5")
-
+	compile("org.hdrhistogram:HdrHistogram:2.1.11")
 	testCompile("junit:junit:4.12")
 	testCompile(kotlin("test-junit", kotlinVersion))
 }

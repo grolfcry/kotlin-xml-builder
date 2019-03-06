@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cat="urn:EurAsEC:CommonAggregateTypes:1.0.0" xmlns:clt="urn:EurAsEC:CommonLeafTypes:1.0.0" xmlns:troute="urn:EurAsEC:TransitRouteInfo:1.0.0" elementFormDefault="qualified" targetNamespace="urn:EurAsEC:TransitRouteInfo:1.0.0" version="1.0.0.8">
+	<xs:element name="TransitRouteInfo" type="troute:TransitRouteInfo"/>
+	<xs:complexType name="TransitRouteInfo">
+		<xs:annotation>
+			<xs:documentation>Уведомление об изменении (соблюдении) маршрута перевозки товаров.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="cat:BusinessDocument">
+				<xs:sequence>
+					<xs:element name="Status" type="cat:Status">
+						<xs:annotation>
+							<xs:documentation>Прикладное статусное состояние транзитной перевозки.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="TDNumber" type="cat:GTDID">
+						<xs:annotation>
+							<xs:documentation>Таможенный номер и дата транзитной декларации.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="TIRCarnet" type="cat:TIRInfo">
+						<xs:annotation>
+							<xs:documentation>Информация о книжке МДП.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Header" type="troute:TransitRouteHeader">
+						<xs:annotation>
+							<xs:documentation>Заголовок информации о соблюдении маршрута перевозки товаров</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DepartureCustomsOffice" type="cat:CustomsOffice">
+						<xs:annotation>
+							<xs:documentation>Таможенный орган отправления</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DestinationCustomsOffice" type="cat:CustomsOffice">
+						<xs:annotation>
+							<xs:documentation>Таможенный орган назначения.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Carrier" type="cat:OrganizationBase">
+						<xs:annotation>
+							<xs:documentation>Информация о перевозчике.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RouteCustomsOffice" type="cat:CustomsOffice">
+						<xs:annotation>
+							<xs:documentation>Промежуточный таможенный орган</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Уведомление об изменении (соблюдении) маршрута перевозки товаров.</xs:documentation>
+	</xs:annotation>
+
+	<!-- ================================================== -->
+	<!-- =====  Complex Type Definitions  -->
+	<!-- ================================================== -->
+	<xs:complexType name="TransitRouteHeader">
+		<xs:annotation>
+			<xs:documentation>Заголовок информации о соблюдении маршрута перевозки товаров</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DeclarationKind" type="clt:CustomsModeKindType">
+				<xs:annotation>
+					<xs:documentation>Тип декларации. Для казахстанской, белорусской, российской сторон - TT или MDP.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MovementKind" type="clt:MovementKindType">
+				<xs:annotation>
+					<xs:documentation>Направление движения для казахстанской, белорусской, российской сторон: TR, IM, EX, VT, TS.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalNumberOfGoods" type="clt:Count5Type">
+				<xs:annotation>
+					<xs:documentation>Общее количество товаров.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="TotalGrossMass" type="clt:MassType">
+				<xs:annotation>
+					<xs:documentation>Общий вес брутто.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RouteTransport" type="cat:Transport">
+				<xs:annotation>
+					<xs:documentation>Транспортное средство при прохождении маршрутного  (промежуточного) таможенного органа.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Локальные прикладные типы.</xs:documentation>
+	</xs:annotation></xs:schema>
