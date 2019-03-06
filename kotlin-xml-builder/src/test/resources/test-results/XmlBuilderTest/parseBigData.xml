@@ -1,96 +1,362 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cat="urn:EurAsEC:CommonAggregateTypes:1.0.0" xmlns:clt="urn:EurAsEC:CommonLeafTypes:1.0.0" xmlns:troute="urn:EurAsEC:TransitRouteInfo:1.0.0" elementFormDefault="qualified" targetNamespace="urn:EurAsEC:TransitRouteInfo:1.0.0" version="1.0.0.8">
-	<xs:element name="TransitRouteInfo" type="troute:TransitRouteInfo"/>
-	<xs:complexType name="TransitRouteInfo">
-		<xs:annotation>
-			<xs:documentation>Уведомление об изменении (соблюдении) маршрута перевозки товаров.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="cat:BusinessDocument">
-				<xs:sequence>
-					<xs:element name="Status" type="cat:Status">
-						<xs:annotation>
-							<xs:documentation>Прикладное статусное состояние транзитной перевозки.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element minOccurs="0" name="TDNumber" type="cat:GTDID">
-						<xs:annotation>
-							<xs:documentation>Таможенный номер и дата транзитной декларации.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element minOccurs="0" name="TIRCarnet" type="cat:TIRInfo">
-						<xs:annotation>
-							<xs:documentation>Информация о книжке МДП.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Header" type="troute:TransitRouteHeader">
-						<xs:annotation>
-							<xs:documentation>Заголовок информации о соблюдении маршрута перевозки товаров</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="DepartureCustomsOffice" type="cat:CustomsOffice">
-						<xs:annotation>
-							<xs:documentation>Таможенный орган отправления</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="DestinationCustomsOffice" type="cat:CustomsOffice">
-						<xs:annotation>
-							<xs:documentation>Таможенный орган назначения.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Carrier" type="cat:OrganizationBase">
-						<xs:annotation>
-							<xs:documentation>Информация о перевозчике.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="RouteCustomsOffice" type="cat:CustomsOffice">
-						<xs:annotation>
-							<xs:documentation>Промежуточный таможенный орган</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:annotation>
-		<xs:documentation>Уведомление об изменении (соблюдении) маршрута перевозки товаров.</xs:documentation>
-	</xs:annotation>
-
-	<!-- ================================================== -->
-	<!-- =====  Complex Type Definitions  -->
-	<!-- ================================================== -->
-	<xs:complexType name="TransitRouteHeader">
-		<xs:annotation>
-			<xs:documentation>Заголовок информации о соблюдении маршрута перевозки товаров</xs:documentation>
-		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="DeclarationKind" type="clt:CustomsModeKindType">
-				<xs:annotation>
-					<xs:documentation>Тип декларации. Для казахстанской, белорусской, российской сторон - TT или MDP.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="MovementKind" type="clt:MovementKindType">
-				<xs:annotation>
-					<xs:documentation>Направление движения для казахстанской, белорусской, российской сторон: TR, IM, EX, VT, TS.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="TotalNumberOfGoods" type="clt:Count5Type">
-				<xs:annotation>
-					<xs:documentation>Общее количество товаров.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element minOccurs="0" name="TotalGrossMass" type="clt:MassType">
-				<xs:annotation>
-					<xs:documentation>Общий вес брутто.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="RouteTransport" type="cat:Transport">
-				<xs:annotation>
-					<xs:documentation>Транспортное средство при прохождении маршрутного  (промежуточного) таможенного органа.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-		</xs:sequence>
-	</xs:complexType>
-	<xs:annotation>
-		<xs:documentation>Локальные прикладные типы.</xs:documentation>
-	</xs:annotation></xs:schema>
+<urn:TransitDeclaration DocumentModeID="token" xmlns:urn="urn:EurAsEC:TransitDeclaration:1.0.0" xmlns:urn1="urn:EurAsEC:CommonAggregateTypes:1.0.0">
+	<urn1:DocumentID>token</urn1:DocumentID>
+	<!--Optional:-->
+	<urn1:RefDocumentID>token</urn1:RefDocumentID>
+	<urn1:DocumentDateTime>2008-09-29T07:49:45</urn1:DocumentDateTime>
+	<!--Optional:-->
+	<urn1:DocumentVersionNumber>100</urn1:DocumentVersionNumber>
+	<urn1:IsTest>true</urn1:IsTest>
+	<urn1:RegistrationCustomsOffice>
+		<urn1:CustomsCode>token</urn1:CustomsCode>
+	</urn1:RegistrationCustomsOffice>
+	<urn1:StampInfo>
+		<urn1:StampDateTime>2004-02-14T23:44:14</urn1:StampDateTime>
+		<urn1:CustomsOfficial>
+			<urn1:Name>string</urn1:Name>
+			<!--Optional:-->
+			<urn1:LNPNumber>toke</urn1:LNPNumber>
+			<!--Optional:-->
+			<urn1:LNPCustomsCode>token</urn1:LNPCustomsCode>
+		</urn1:CustomsOfficial>
+	</urn1:StampInfo>
+	<urn1:ReferenceNumber>token</urn1:ReferenceNumber>
+	<urn:Status>
+		<urn1:Name>TR_ROUTE_OK</urn1:Name>
+	</urn:Status>
+	<!--Optional:-->
+	<urn:TDNumber>
+		<urn1:CustomsCode>token</urn1:CustomsCode>
+		<urn1:RegistrationDate>2008-11-15</urn1:RegistrationDate>
+		<urn1:GTDNumber>token</urn1:GTDNumber>
+	</urn:TDNumber>
+	<!--Optional:-->
+	<urn:TIRCarnet>
+		<urn1:Series>token</urn1:Series>
+		<urn1:Number>token</urn1:Number>
+		<!--Optional:-->
+		<urn1:TIRPageNumber>100</urn1:TIRPageNumber>
+		<!--Optional:-->
+		<urn1:HolderID>token</urn1:HolderID>
+		<!--Optional:-->
+		<urn1:TIRCustomsRegNumber>token</urn1:TIRCustomsRegNumber>
+		<urn1:TIRRegDate>2017-05-15</urn1:TIRRegDate>
+	</urn:TIRCarnet>
+	<urn:Header>
+		<urn:DeclarationKind>MDP</urn:DeclarationKind>
+		<!--Optional:-->
+		<urn:DeclarationSpecifity>string</urn:DeclarationSpecifity>
+		<urn:MovementKind>VT</urn:MovementKind>
+		<!--Optional:-->
+		<urn:TransSibIndicator>false</urn:TransSibIndicator>
+		<urn:DeclarationDateTime>2016-01-02T00:07:42</urn:DeclarationDateTime>
+		<urn:DepartureCountryCode>token</urn:DepartureCountryCode>
+		<urn:DestinationCountryCode>token</urn:DestinationCountryCode>
+		<!--Optional:-->
+		<urn:TotalNumberOfDocumentsPages>100</urn:TotalNumberOfDocumentsPages>
+		<!--Optional:-->
+		<urn:TotalNumberOfTDPages>100</urn:TotalNumberOfTDPages>
+		<!--Optional:-->
+		<urn:ForeignSealIndicator>true</urn:ForeignSealIndicator>
+		<urn:TotalNumberOfGoods>100</urn:TotalNumberOfGoods>
+		<urn:TotalNumberOfPackages>100</urn:TotalNumberOfPackages>
+		<!--Optional:-->
+		<urn:TotalGrossMass>1000.00000000000000000000</urn:TotalGrossMass>
+		<urn:AtDepartureTransport>
+			<urn1:TransportMode>to</urn1:TransportMode>
+			<!--Optional:-->
+			<urn1:TrailerIdentity>token</urn1:TrailerIdentity>
+			<!--Optional:-->
+			<urn1:SecondTrailerIdentity>token</urn1:SecondTrailerIdentity>
+			<!--Optional:-->
+			<urn1:Nationality>token</urn1:Nationality>
+			<urn1:TransportMeans>
+				<!--1 or more repetitions:-->
+				<urn1:Identity>token</urn1:Identity>
+			</urn1:TransportMeans>
+		</urn:AtDepartureTransport>
+		<!--Optional:-->
+		<urn:CrossingBorderTransport>
+			<urn1:TransportMode>to</urn1:TransportMode>
+			<!--Optional:-->
+			<urn1:TrailerIdentity>token</urn1:TrailerIdentity>
+			<!--Optional:-->
+			<urn1:SecondTrailerIdentity>token</urn1:SecondTrailerIdentity>
+			<!--Optional:-->
+			<urn1:Nationality>token</urn1:Nationality>
+			<urn1:TransportMeans>
+				<!--1 or more repetitions:-->
+				<urn1:Identity>token</urn1:Identity>
+			</urn1:TransportMeans>
+		</urn:CrossingBorderTransport>
+		<!--Optional:-->
+		<urn:TotalGoodsCost>
+			<urn1:Amount>1000.0000000000000000</urn1:Amount>
+			<urn1:CurrencyCode>tok</urn1:CurrencyCode>
+		</urn:TotalGoodsCost>
+	</urn:Header>
+	<!--1 or more repetitions:-->
+	<urn:Consignment>
+		<!--Optional:-->
+		<urn1:DocumentName>string</urn1:DocumentName>
+		<!--Optional:-->
+		<urn1:DocumentReference>token</urn1:DocumentReference>
+		<!--Optional:-->
+		<urn1:DocumentDate>2010-03-18</urn1:DocumentDate>
+		<urn1:DocumentKind>token</urn1:DocumentKind>
+		<urn:ConsignmentInfo>
+			<!--Optional:-->
+			<urn1:Sequence>tok</urn1:Sequence>
+			<!--1 or more repetitions:-->
+			<urn1:Goods>
+				<urn1:ItemNumber>token</urn1:ItemNumber>
+				<urn1:TNVEDCode>token</urn1:TNVEDCode>
+				<urn1:Description>string</urn1:Description>
+				<urn1:GrossWeight>1000.000000000000000</urn1:GrossWeight>
+				<!--Optional:-->
+				<urn1:NetWeight>1000.000000000000000</urn1:NetWeight>
+				<!--Optional:-->
+				<urn1:DEICode>token</urn1:DEICode>
+				<!--Optional:-->
+				<urn1:DEIGoodsQuantity>1000.00000000000000000000</urn1:DEIGoodsQuantity>
+				<!--Zero or more repetitions:-->
+				<urn1:Package>
+					<urn1:KindSequence>100</urn1:KindSequence>
+					<urn1:Kind>to</urn1:Kind>
+					<!--Optional:-->
+					<urn1:NumberOfPackages>100</urn1:NumberOfPackages>
+					<!--Optional:-->
+					<urn1:NumberOfPieces>100</urn1:NumberOfPieces>
+					<!--Optional:-->
+					<urn1:MarksAndNumbers>string</urn1:MarksAndNumbers>
+				</urn1:Package>
+				<!--Optional:-->
+				<urn1:Container>
+					<!--1 or more repetitions:-->
+					<urn1:Identity>token</urn1:Identity>
+				</urn1:Container>
+				<!--Optional:-->
+				<urn1:GoodsCost>
+					<urn1:Amount>1000.0000000000000000</urn1:Amount>
+					<urn1:CurrencyCode>tok</urn1:CurrencyCode>
+				</urn1:GoodsCost>
+			</urn1:Goods>
+			<!--Optional:-->
+			<urn1:Container>
+				<!--1 or more repetitions:-->
+				<urn1:Identity>token</urn1:Identity>
+			</urn1:Container>
+		</urn:ConsignmentInfo>
+		<!--Optional:-->
+		<urn:Consignor>
+			<urn1:OrganizationName>string</urn1:OrganizationName>
+			<!--Optional:-->
+			<urn1:INN>tokentoken</urn1:INN>
+			<!--Optional:-->
+			<urn1:IdentityCard>
+				<!--Optional:-->
+				<urn1:IdentityCardCode>token</urn1:IdentityCardCode>
+				<urn1:IdentityCardName>token</urn1:IdentityCardName>
+				<!--Optional:-->
+				<urn1:IdentityCardSeries>token</urn1:IdentityCardSeries>
+				<urn1:IdentityCardNumber>token</urn1:IdentityCardNumber>
+				<urn1:IdentityCardDate>2018-12-29+05:00</urn1:IdentityCardDate>
+				<!--Optional:-->
+				<urn1:OrganizationName>string</urn1:OrganizationName>
+				<!--Optional:-->
+				<urn1:RBIdentificationNumber>tokentokentoke</urn1:RBIdentificationNumber>
+			</urn1:IdentityCard>
+			<!--Optional:-->
+			<urn1:Address>
+				<!--Optional:-->
+				<urn1:PostalCode>token</urn1:PostalCode>
+				<!--Optional:-->
+				<urn1:CountryCode>token</urn1:CountryCode>
+				<!--Optional:-->
+				<urn1:CountryName>string</urn1:CountryName>
+				<!--Optional:-->
+				<urn1:Region>string</urn1:Region>
+				<!--Optional:-->
+				<urn1:City>string</urn1:City>
+				<!--Optional:-->
+				<urn1:StreetHouse>string</urn1:StreetHouse>
+				<!--Optional:-->
+				<urn1:AddressLine>string</urn1:AddressLine>
+			</urn1:Address>
+		</urn:Consignor>
+		<urn:Consignee>
+			<urn1:OrganizationName>string</urn1:OrganizationName>
+			<!--Optional:-->
+			<urn1:INN>tokentoken</urn1:INN>
+			<!--Optional:-->
+			<urn1:IdentityCard>
+				<!--Optional:-->
+				<urn1:IdentityCardCode>token</urn1:IdentityCardCode>
+				<urn1:IdentityCardName>token</urn1:IdentityCardName>
+				<!--Optional:-->
+				<urn1:IdentityCardSeries>token</urn1:IdentityCardSeries>
+				<urn1:IdentityCardNumber>token</urn1:IdentityCardNumber>
+				<urn1:IdentityCardDate>2017-11-01+05:00</urn1:IdentityCardDate>
+				<!--Optional:-->
+				<urn1:OrganizationName>string</urn1:OrganizationName>
+				<!--Optional:-->
+				<urn1:RBIdentificationNumber>tokentokentoke</urn1:RBIdentificationNumber>
+			</urn1:IdentityCard>
+			<!--Optional:-->
+			<urn1:Address>
+				<!--Optional:-->
+				<urn1:PostalCode>token</urn1:PostalCode>
+				<!--Optional:-->
+				<urn1:CountryCode>token</urn1:CountryCode>
+				<!--Optional:-->
+				<urn1:CountryName>string</urn1:CountryName>
+				<!--Optional:-->
+				<urn1:Region>string</urn1:Region>
+				<!--Optional:-->
+				<urn1:City>string</urn1:City>
+				<!--Optional:-->
+				<urn1:StreetHouse>string</urn1:StreetHouse>
+				<!--Optional:-->
+				<urn1:AddressLine>string</urn1:AddressLine>
+			</urn1:Address>
+		</urn:Consignee>
+	</urn:Consignment>
+	<urn:DepartureCustomsOffice>
+		<urn1:CustomsCode>token</urn1:CustomsCode>
+	</urn:DepartureCustomsOffice>
+	<!--Optional:-->
+	<urn:DestinationPlace>
+		<urn1:CustomsCode>token</urn1:CustomsCode>
+		<!--Optional:-->
+		<urn1:RWStationCode>token</urn1:RWStationCode>
+		<!--Optional:-->
+		<urn1:SVHRegistryNumber>token</urn1:SVHRegistryNumber>
+		<!--Optional:-->
+		<urn1:SVHRegistryDate>2014-06-11+06:00</urn1:SVHRegistryDate>
+	</urn:DestinationPlace>
+	<!--1 or more repetitions:-->
+	<urn:Guarantee>
+		<urn:EnsuringMeasureCode>token</urn:EnsuringMeasureCode>
+		<!--Optional:-->
+		<urn:GuaranteeNumber>token</urn:GuaranteeNumber>
+	</urn:Guarantee>
+	<urn:TransitDateLimit>
+		<urn1:DateLimit>2003-11-10+05:00</urn1:DateLimit>
+	</urn:TransitDateLimit>
+	<urn:Seal>
+		<!--1 or more repetitions:-->
+		<urn1:Identity>token</urn1:Identity>
+	</urn:Seal>
+	<urn:Carrier>
+		<urn1:OrganizationName>string</urn1:OrganizationName>
+		<!--Optional:-->
+		<urn1:INN>tokentoken</urn1:INN>
+		<!--Optional:-->
+		<urn1:IdentityCard>
+			<!--Optional:-->
+			<urn1:IdentityCardCode>token</urn1:IdentityCardCode>
+			<urn1:IdentityCardName>token</urn1:IdentityCardName>
+			<!--Optional:-->
+			<urn1:IdentityCardSeries>token</urn1:IdentityCardSeries>
+			<urn1:IdentityCardNumber>token</urn1:IdentityCardNumber>
+			<urn1:IdentityCardDate>2000-09-25</urn1:IdentityCardDate>
+			<!--Optional:-->
+			<urn1:OrganizationName>string</urn1:OrganizationName>
+			<!--Optional:-->
+			<urn1:RBIdentificationNumber>tokentokentoke</urn1:RBIdentificationNumber>
+		</urn1:IdentityCard>
+		<!--Optional:-->
+		<urn1:Address>
+			<!--Optional:-->
+			<urn1:PostalCode>token</urn1:PostalCode>
+			<!--Optional:-->
+			<urn1:CountryCode>token</urn1:CountryCode>
+			<!--Optional:-->
+			<urn1:CountryName>string</urn1:CountryName>
+			<!--Optional:-->
+			<urn1:Region>string</urn1:Region>
+			<!--Optional:-->
+			<urn1:City>string</urn1:City>
+			<!--Optional:-->
+			<urn1:StreetHouse>string</urn1:StreetHouse>
+			<!--Optional:-->
+			<urn1:AddressLine>string</urn1:AddressLine>
+		</urn1:Address>
+	</urn:Carrier>
+	<urn:Declarant>
+		<urn1:OrganizationName>string</urn1:OrganizationName>
+		<!--Optional:-->
+		<urn1:INN>tokentoken</urn1:INN>
+		<!--Optional:-->
+		<urn1:IdentityCard>
+			<!--Optional:-->
+			<urn1:IdentityCardCode>token</urn1:IdentityCardCode>
+			<urn1:IdentityCardName>token</urn1:IdentityCardName>
+			<!--Optional:-->
+			<urn1:IdentityCardSeries>token</urn1:IdentityCardSeries>
+			<urn1:IdentityCardNumber>token</urn1:IdentityCardNumber>
+			<urn1:IdentityCardDate>2015-11-05</urn1:IdentityCardDate>
+			<!--Optional:-->
+			<urn1:OrganizationName>string</urn1:OrganizationName>
+			<!--Optional:-->
+			<urn1:RBIdentificationNumber>tokentokentoke</urn1:RBIdentificationNumber>
+		</urn1:IdentityCard>
+		<!--Optional:-->
+		<urn1:Address>
+			<!--Optional:-->
+			<urn1:PostalCode>token</urn1:PostalCode>
+			<!--Optional:-->
+			<urn1:CountryCode>token</urn1:CountryCode>
+			<!--Optional:-->
+			<urn1:CountryName>string</urn1:CountryName>
+			<!--Optional:-->
+			<urn1:Region>string</urn1:Region>
+			<!--Optional:-->
+			<urn1:City>string</urn1:City>
+			<!--Optional:-->
+			<urn1:StreetHouse>string</urn1:StreetHouse>
+			<!--Optional:-->
+			<urn1:AddressLine>string</urn1:AddressLine>
+		</urn1:Address>
+	</urn:Declarant>
+	<!--Zero or more repetitions:-->
+	<urn:PreviousDocument>
+		<!--Optional:-->
+		<urn1:DocumentName>string</urn1:DocumentName>
+		<!--Optional:-->
+		<urn1:DocumentReference>token</urn1:DocumentReference>
+		<!--Optional:-->
+		<urn1:DocumentDate>2017-10-20</urn1:DocumentDate>
+		<!--Optional:-->
+		<urn1:DocumentKind>token</urn1:DocumentKind>
+		<!--Zero or more repetitions:-->
+		<urn1:ConsignmentReference>
+			<!--Optional:-->
+			<urn1:ConsignmentSequence>tok</urn1:ConsignmentSequence>
+			<!--Optional:-->
+			<urn1:GoodsItemNumber>token</urn1:GoodsItemNumber>
+		</urn1:ConsignmentReference>
+	</urn:PreviousDocument>
+	<!--Zero or more repetitions:-->
+	<urn:ProducedDocument>
+		<!--Optional:-->
+		<urn1:DocumentName>string</urn1:DocumentName>
+		<!--Optional:-->
+		<urn1:DocumentReference>token</urn1:DocumentReference>
+		<!--Optional:-->
+		<urn1:DocumentDate>2000-01-07</urn1:DocumentDate>
+		<urn1:DocumentKind>token</urn1:DocumentKind>
+		<!--Zero or more repetitions:-->
+		<urn1:ConsignmentReference>
+			<!--Optional:-->
+			<urn1:ConsignmentSequence>tok</urn1:ConsignmentSequence>
+			<!--Optional:-->
+			<urn1:GoodsItemNumber>token</urn1:GoodsItemNumber>
+		</urn1:ConsignmentReference>
+	</urn:ProducedDocument>
+	<!--Zero or more repetitions:-->
+	<urn:TransitCustomsOffice>
+		<urn1:CustomsCode>token</urn1:CustomsCode>
+		<!--Optional:-->
+		<urn1:Sequence>100</urn1:Sequence>
+	</urn:TransitCustomsOffice>
+</urn:TransitDeclaration>
