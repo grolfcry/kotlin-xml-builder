@@ -11,7 +11,13 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import org.HdrHistogram.Histogram
-
+import org.w3c.dom.Document
+import java.io.InputStreamReader
+import java.io.StringWriter
+import javax.xml.transform.OutputKeys
+import javax.xml.transform.TransformerFactory
+import javax.xml.transform.dom.DOMSource
+import javax.xml.transform.stream.StreamResult
 
 
 class XmlBuilderTest : XmlBuilderTestBase() {
@@ -50,7 +56,6 @@ class XmlBuilderTest : XmlBuilderTestBase() {
                 namespace("d", "http://b.co")
             }
         }
-
         validate(root)
     }
 
@@ -368,21 +373,56 @@ class XmlBuilderTest : XmlBuilderTestBase() {
     fun parseBigData() {
         val resName = "/test-results/${javaClass.simpleName}/${testName.methodName}.xml"
         val doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(javaClass.getResourceAsStream(resName))
-        parse(doc)
+        val parse = NodeXmlPullBuilder().parse(InputStreamReader(javaClass.getResourceAsStream(resName)))
+        println(parse.toString(true))
+        val node = parse(doc)
         val histogram = Histogram(3600000000000L, 1)
         //histogram.set
         val start = System.nanoTime()
-        val count =100000
+        val count =10
+        val tf = TransformerFactory.newInstance()
         for( i in 1..count){
             val start = System.nanoTime()
-            parse(doc)
-            val end = (System.nanoTime()-start)
+            for( i in 1..10) {
+                //node.toString(false)
+                transform(tf, doc)
+
+            }
+            val end = (System.nanoTime()-start)/10
             histogram.recordValue(end )
         }
         val end = (System.nanoTime()-start)/count/1000
         println(end)
 
         histogram.outputPercentileDistribution(System.out, 1000.0)
+        val root = xml("TransitDeclaration") {
+            xmlns = "urn:EurAsEC:CommonAggregateTypes:1.0.0"
+            namespace("urn","urn:EurAsEC:TransitDeclaration:1.0.0")
+            namespace("urn1","urn:EurAsEC:CommonAggregateTypes:1.0.0")
+            attribute("DocumentModeID","token")
+            "DocumentID"{
+                -"DocumentID1"
+            }
+            "RefDocumentID"(){
+                namespace("urn1","urn:EurAsEC:CommonAggregateTypes:1.0.0")
+                -"RefDocumentID111"
+            }
+            "DocumentDateTime"(){
+                namespace("urn1","urn:EurAsEC:CommonAggregateTypes:1.0.0")
+                -"2008-09-29T07:49:45"
+            }
+        }
+        println(root.toString(false))
+    }
+
+    private fun transform(tf: TransformerFactory, doc: Document?) {
+        val transformer = tf.newTransformer()
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no")
+        transformer.setOutputProperty(OutputKeys.METHOD, "xml")
+        transformer.setOutputProperty(OutputKeys.INDENT, "false")
+        transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8")
+        val sw = StringWriter()
+        transformer.transform(DOMSource(doc), StreamResult(sw))
     }
 
     @Test

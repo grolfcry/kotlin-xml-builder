@@ -25,6 +25,7 @@ dependencies {
 	compile("org.hdrhistogram:HdrHistogram:2.1.11")
 	testCompile("junit:junit:4.12")
 	testCompile(kotlin("test-junit", kotlinVersion))
+	compile( "xpp3:xpp3:1.1.4c")
 }
 
 artifacts {

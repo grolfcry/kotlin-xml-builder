@@ -56,7 +56,7 @@ open class XmlBuilderTestBase {
 		assertEquals(expectedString, actualString, "actual xml matches what is expected")
 	}
 
-	private fun Document.transform(): String {
+	fun Document.transform(): String {
 		val sw = StringWriter()
 		val tf = TransformerFactory.newInstance()
 		val transformer = tf.newTransformer()
